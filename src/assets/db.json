@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Tarun",
+      "age": 25,
+      "country": "India",
+      "mobile": "9876543210",
+      "gender": "Male",
+      "email": "tarun@example.com",
+      "password": "tarun123"
+    },
+    {
+      "id": 2,
+      "name": "Patel",
+      "age": 28,
+      "country": "UK",
+      "mobile": "9123456780",
+      "gender": "Male",
+      "email": "patel@example.com",
+      "password": "patel123"
+    }
+  ]
+}
