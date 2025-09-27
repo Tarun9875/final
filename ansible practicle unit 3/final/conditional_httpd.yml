@@ -1,0 +1,16 @@
+- name: Conditional package installation for Apache
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install Apache on RedHat
+      yum:
+        name: httpd
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: Install Apache on Debian/Ubuntu
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+      when: ansible_os_family == "Debian"

@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Tarun",
+      "age": 25,
+      "country": "India",
+      "email": "tarun@example.com",
+      "password": "tarun123",
+      "gender": "Male",
+      "mobile": "9876543210"
+    },
+    {
+      "id": 2,
+      "name": "Patel",
+      "age": 28,
+      "country": "UK",
+      "email": "patel@example.com",
+      "password": "patel456",
+      "gender": "Male",
+      "mobile": "9123456780"
+    },
+    {
+      "id": 3,
+      "name": "Riya",
+      "age": 23,
+      "country": "USA",
+      "email": "riya@example.com",
+      "password": "riya789",
+      "gender": "Female",
+      "mobile": "9988776655"
+    }
+  ]
+}

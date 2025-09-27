@@ -1,0 +1,73 @@
+---
+- name: Install and configure Apache on Ubuntu (WSL safe)
+  hosts: webservers
+  become: yes
+
+  vars:
+    apache_port: 8080
+    doc_root: /var/www/html
+    apache_conf_src: apache2.conf
+
+  tasks:
+    # 1. Stop and disable Nginx if installed
+    - name: Stop and disable Nginx
+      service:
+        name: nginx
+        state: stopped
+        enabled: no
+      ignore_errors: yes
+
+    # 2. Update APT cache
+    - name: Update APT cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    # 3. Install Apache
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+
+    # 4. Ensure log directory exists
+    - name: Ensure Apache log directory exists
+      file:
+        path: /var/log/apache2
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0755'
+
+    # 5. Ensure DocumentRoot exists
+    - name: Ensure Apache document root exists
+      file:
+        path: "{{ doc_root }}"
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0755'
+
+    # 6. Create a test index.html
+    - name: Create test index.html
+      copy:
+        content: "<h1>Apache running via Ansible on WSL!</h1>"
+        dest: "{{ doc_root }}/index.html"
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    # 7. Deploy Apache config file
+    - name: Deploy Apache configuration
+      copy:
+        src: "{{ apache_conf_src }}"
+        dest: /etc/apache2/apache2.conf
+        owner: root
+        group: root
+        mode: '0644'
+      notify: restart apache
+
+  handlers:
+    - name: restart apache
+      service:
+        name: apache2
+        state: restarted

@@ -1,0 +1,16 @@
+- name: Create users using variables on Ubuntu
+  hosts: all
+  become: yes
+  vars:
+    user_list:
+      - devops
+      - tester
+      - admin
+  tasks:
+    - name: Create multiple users
+      user:
+        name: "{{ item }}"
+        state: present
+        groups: sudo
+        append: yes
+      loop: "{{ user_list }}"

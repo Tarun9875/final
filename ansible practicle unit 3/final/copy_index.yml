@@ -1,0 +1,11 @@
+- name: Deploy index.html to webserver on Ubuntu
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Copy index.html
+      copy:	
+        src: index.html
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'

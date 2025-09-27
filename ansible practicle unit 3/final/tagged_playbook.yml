@@ -1,0 +1,16 @@
+- name: Example of using tags on Ubuntu
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install Git
+      apt:
+        name: git
+        state: present
+        update_cache: yes
+      tags: git_install
+
+    - name: Install Wget
+      apt:
+        name: wget
+        state: present
+      tags: wget_install

@@ -1,0 +1,10 @@
+- name: Create devops user with sudo on Ubuntu
+  hosts: all
+  become: yes
+  tasks:
+    - name: Create user devops
+      user:
+        name: devops
+        state: present
+        groups: sudo
+        append: yes

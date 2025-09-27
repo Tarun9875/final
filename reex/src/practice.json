@@ -1,0 +1,26 @@
+{
+    
+        "users":[
+            {
+            "id":1,
+            "name":"Tarun",
+            "age":20,
+            "contry":"India",
+            "email":"tarunpatel2045785@gmal.com",
+            "password":"tarun123",
+            "gender":"male",
+            "mobile":"9876543210"
+        },
+        {
+            "id":2,
+            "name":"Patel",
+            "age" :10,
+            "contry":"uk",
+            "email":"test@201452.com",
+            "password":124578,
+            "gender":"female",
+            "mobile":9123456780
+        }
+    ]
+    
+}

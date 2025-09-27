@@ -1,0 +1,16 @@
+- name: Install common utilities on Ubuntu
+  hosts: all
+  become: yes
+  tasks:
+    - name: Update APT cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+    - name: Install multiple packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - git
+        - wget
+        - tree

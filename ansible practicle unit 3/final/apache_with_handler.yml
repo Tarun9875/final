@@ -1,0 +1,26 @@
+- name: Install and configure Apache with handler on Ubuntu
+  hosts: webservers
+  become: yes
+
+  tasks:
+    - name: Update APT cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+
+    - name: Deploy Apache config file
+      copy:
+        src: apache2.conf      # <-- put your custom config under ./files/apache2.conf
+        dest: /etc/apache2/apache2.conf
+      notify: restart apache
+
+  handlers:
+    - name: restart apache
+      service:
+        name: apache2
+        state: restarted

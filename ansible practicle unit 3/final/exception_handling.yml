@@ -1,0 +1,21 @@
+- name: Exception handling demo on Ubuntu
+  hosts: all
+  become: yes
+  tasks:
+    - block:
+        - name: Try installing a fake package
+          apt:
+            name: fakepkg
+            state: present
+            update_cache: yes
+      rescue:
+        - name: Install fallback package (nginx)
+          apt:
+            name: nginx
+            state: present
+            update_cache: yes
+      always:
+        - name: Log completion
+          copy:
+            content: "Playbook execution completed.\n"
+            dest: /tmp/ansible_log.txt

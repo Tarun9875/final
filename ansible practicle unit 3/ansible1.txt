@@ -1,0 +1,36 @@
+java -jar jenkins.war --httpPort=9090
+
+
+----------
+ansible
+
+ sudo systemctl status apache2
+ansible-playbook -i hosts.ini custome.yml --ask-become-pass
+
+{hosts.ini}
+[webservers]
+172.22.121.38 ansible_user=tarun ansible_ssh_pass=tarun ansible_connection=ssh
+
+[local]
+localhost ansible_connection=local
+
+
+
+[run]
+http://172.22.121.38
+
+--------------------------nginx stop
+sudo systemctl stop nginx
+sudo systemctl disable nginx
+
+-------------restart
+sudo systemctl restart apache2
+sudo systemctl status apache2
+
+---------------
+sudo systemctl stop apache2
+sudo systemctl disable apache2
+sudo systemctl start nginx
+sudo systemctl enable nginx
+-------------------------------
+sudo systmctl status nginx
